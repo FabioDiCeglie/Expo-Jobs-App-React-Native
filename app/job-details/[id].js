@@ -30,6 +30,20 @@ const JobDetails = () => {
   
   const onRefresh = () => {};
 
+  const displayTabContent = () => {
+    switch(activeTab){
+      case 'Qualifications':
+        return <Specifics 
+        title={'Qualifications'}
+        points={data[0].job_highlights?.qualifications ?? ['N/A']}
+        />
+      case 'About':
+      case 'Responsabilities':
+      default:
+        break;
+    }
+  };
+
   const { data, isLoading, error, refetch } = useFetch('job-details', {
     job_id: params.id,
   });
@@ -81,6 +95,8 @@ const JobDetails = () => {
               activeTab={activeTab}
               setActiveTab={setActiveTab}
             />
+
+            {displayTabContent()}
           </View>
         )}
       </ScrollView>
