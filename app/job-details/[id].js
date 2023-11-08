@@ -20,32 +20,36 @@ import {
 } from '../../components';
 import { COLORS, icons, SIZES } from '../../constants';
 
-const tabs = ['About', 'Qualifications', 'Responsibilities']
+const tabs = ['About', 'Qualifications', 'Responsibilities'];
 
 const JobDetails = () => {
   const params = useSearchParams();
   const router = useRouter();
   const [refreshing, setRefreshing] = useState(false);
-  const [activeTab, setActiveTab] = useState(tabs[0])
-  
+  const [activeTab, setActiveTab] = useState(tabs[0]);
+
   const onRefresh = () => {};
 
   const displayTabContent = () => {
-    switch(activeTab){
+    switch (activeTab) {
       case 'Qualifications':
-        return <Specifics 
-        title={'Qualifications'}
-        points={data[0].job_highlights?.Qualifications ?? ['N/A']}
-        />
+        return (
+          <Specifics
+            title={'Qualifications'}
+            points={data[0].job_highlights?.Qualifications ?? ['N/A']}
+          />
+        );
       case 'About':
-        return <JobAbout 
-        info={data[0].job_description ?? 'No data provided'}
-        />
+        return (
+          <JobAbout info={data[0].job_description ?? 'No data provided'} />
+        );
       case 'Responsabilities':
-        return <Specifics 
-        title={'Responsibilities'}
-        points={data[0].job_highlights?.Responsibilities ?? ['N/A']}
-        />
+        return (
+          <Specifics
+            title={'Responsibilities'}
+            points={data[0].job_highlights?.Responsibilities ?? ['N/A']}
+          />
+        );
       default:
         break;
     }
@@ -90,14 +94,14 @@ const JobDetails = () => {
           <Text>No data</Text>
         ) : (
           <View style={{ padding: SIZES.medium, paddingBottom: 100 }}>
-            <Company 
+            <Company
               companyLogo={data[0].employer_logo}
               jobTitle={data[0].job_title}
               companyName={data[0].employer_name}
               location={data[0].job_country}
             />
 
-            <JobTabs 
+            <JobTabs
               tabs={tabs}
               activeTab={activeTab}
               setActiveTab={setActiveTab}
@@ -107,6 +111,12 @@ const JobDetails = () => {
           </View>
         )}
       </ScrollView>
+
+      <JobFooter
+        url={
+          data[0]?.job_google_link ?? 'https://careers.google.com/jobs/results'
+        }
+      />
     </SafeAreaView>
   );
 };
