@@ -9,6 +9,7 @@ const PopularJobCard = ({ item, selectedJob, handleCardPress }) => {
       style={styles.container(selectedJob, item)}
       onPress={() => handleCardPress(item)}
     >
+      
       <TouchableOpacity style={styles.logoContainer(selectedJob, item)}>
         <Image
           source={{
@@ -31,6 +32,7 @@ const PopularJobCard = ({ item, selectedJob, handleCardPress }) => {
         </Text>
         <Text style={styles.location}>{item.job_country}</Text>
       </View>
+
     </TouchableOpacity>
   );
 };
