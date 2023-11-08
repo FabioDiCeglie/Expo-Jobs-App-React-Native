@@ -6,7 +6,7 @@ import { checkImageURL } from '../../../../utils';
 const NearbyJobCard = ({ job, handleNavigate }) => (
   <TouchableOpacity
     style={styles.container}
-    onPress={() => handleNavigate(item)}
+    onPress={handleNavigate}
   >
 
     <TouchableOpacity style={styles.logoContainer}>
