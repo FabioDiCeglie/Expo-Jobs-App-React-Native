@@ -20,7 +20,7 @@ import {
 } from '../../components';
 import { COLORS, icons, SIZES } from '../../constants';
 
-const tabs = ['About', 'Qualifications', 'Responsabilities']
+const tabs = ['About', 'Qualifications', 'Responsibilities']
 
 const JobDetails = () => {
   const params = useSearchParams();
@@ -42,6 +42,10 @@ const JobDetails = () => {
         info={data[0].job_description ?? 'No data provided'}
         />
       case 'Responsabilities':
+        return <Specifics 
+        title={'Responsibilities'}
+        points={data[0].job_highlights?.Responsibilities ?? ['N/A']}
+        />
       default:
         break;
     }
